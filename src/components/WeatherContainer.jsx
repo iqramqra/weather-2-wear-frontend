@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import WeatherCard from './WeatherCard'
+// import apiConfig from '../apiKey.js'
 
 class WeatherContainer extends Component {
+    
     render() {
+        // console.log(this.props.dailyData);
+
+        let renderData = this.props.dailyData.map((reading, index) => {
+            return <WeatherCard reading = {reading} key={index} weatherData={this.props.weatherData}/>
+        })
+        
+        // console.log( this.props.weatherData );
+        
         return (
             <div className='WeatherContainer'>
-                <h1>In the Weather Container</h1>
-                <WeatherCard/>
+               {renderData}
             </div>
         )
     }
 }
-
 export default WeatherContainer

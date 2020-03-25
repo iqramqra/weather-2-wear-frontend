@@ -43,7 +43,19 @@
   margin: 10%;
 }
 
+.WeatherCard{
+  text-align: left;
+  border-color: black;
+}
+
 .OutfitContainer{
   float: right;
   margin: 10%;
+}
+
+.ZipCode{
+  padding: 40px;
+  background-color: #61dafb;
+  text-align: center;
+ 
 }
