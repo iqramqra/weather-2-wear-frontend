@@ -41,6 +41,8 @@ class OutfitCard extends Component {
             //   let outfitData = this.props.outfit
               // summer
               if (Math.round(reading.main.temp_max)>= 80) {
+                  outData.map(x => {console.log(x);
+                  })
                   return `Shirt: ${outData[0].top} Bottom:  ${outData[0].bottom}`
                   // spring
               } else if (Math.round(reading.main.temp_max)>= 70){
