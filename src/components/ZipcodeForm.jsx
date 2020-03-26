@@ -1,38 +1,34 @@
-import React, { Component } from 'react'
-import apiConfig from '../apiKey'
-
-let zipCodeInput = 11230
-class ZipcodeForm extends Component {
-    
-    state = {
-        weeather: [],
-        zipcode: 11230
-    }
-    
-    
-    componentDidMount(){
-        fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipCodeInput}&units=imperial&appid=${apiConfig.owaKey}`)
-        .then(r => r.json())
-        .then()
-    }
+import React from 'react';
+// import apiConfig from '../apiKey'
+// let zipCodeInput = 11230
+class ZipcodeForm extends React.Component {
 
     handleChange = (e) => {
-        this.props.handleZipCode(e.target.value)
+        
+        console.log(e.target.value); 
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
+        var text = document.getElementById('zipcodeText').value;
+        // this.props.zipCode
+        this.props.handleZipcode(text)
+        // this.props
     }
 
     render() {
-        // console.log(this.props);
-        
+        // console.log(this.state);
         return (
                 <form className='ZipCode' onSubmit={this.handleSubmit}>
                     <label>
-                        <input type="text" name='zipcode' placeholder='Enter your Zipcode' value={this.props.zipcode} onChange={this.handleChange} />
+                        <input type="text" 
+                            id='zipcodeText'
+                            name='zipcode' 
+                            placeholder='Enter your Zipcode' 
+                            value={this.props.zipCode} 
+                            onChange={this.handleChange} />
                     </label>
-                    <input type='submit' value='submit'/>
+                    <input type='submit' value='submit' onClick={this.handleSubmit}/>
                 </form>
         )
     }

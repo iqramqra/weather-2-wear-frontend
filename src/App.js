@@ -10,10 +10,7 @@ class App extends Component {
   state={
     allData:[],
     dailyData: [],
-    zipcode: 32789
-    // 11218
-    // 21228
-    // 32789 orlando
+    zipcode: 11230
   }
 
   handleTime(){
@@ -28,7 +25,28 @@ class App extends Component {
     .then(r => r.json())
     .then(weatherData => {
       const todayDate = new Date().toISOString().slice(0,10);
-      const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${todayDate} 18:00:00` || `${this.handleTime()} 18:00:00`))
+      // const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${todayDate} 18:00:00` || `${this.handleTime()} 18:00:00`))
+      const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${this.handleTime()} 18:00:00` || `${todayDate} 18:00:00`))
+      this.setState({
+        allData: weatherData.city, 
+        dailyData: dailyData
+      })
+    })
+  }
+
+  constructor(props) {
+    super(props)
+    this.handleZipcode = this.handleZipcode.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+  }
+
+  handleZipcode(userZipcode){
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${userZipcode}&units=imperial&appid=${apiConfig.owaKey}`)
+    .then(r => r.json())
+    .then(weatherData => {
+      const todayDate = new Date().toISOString().slice(0,10);
+      // const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${todayDate} 18:00:00` || `${this.handleTime()} 18:00:00`))
+      const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${this.handleTime()} 18:00:00` || `${todayDate} 18:00:00`))
         this.setState({
             allData: weatherData.city, 
             dailyData: dailyData
@@ -37,9 +55,10 @@ class App extends Component {
   }
   
   render() {
+    console.log(this.state.dailyData);
     return (
       <div className="App">
-        <ZipcodeForm />
+        <ZipcodeForm handleZipcode={this.handleZipcode} state = {this.state.zipcode}/>
         <WeatherContainer weatherData={this.state.allData} dailyData={this.state.dailyData} />
         <OutfitContainer dailyData={this.state.dailyData}/>
       </div>
