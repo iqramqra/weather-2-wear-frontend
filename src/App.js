@@ -10,22 +10,20 @@ class App extends Component {
   state={
     allData:[],
     dailyData: [],
-    zipcode: 11218
-
+    zipcode: 32789
     // 11218
     // 21228
-    // 32789
+    // 32789 orlando
   }
 
   handleTime(){
-    // console.log("hi");
     const date = new Date();
     date.setDate(new Date().getDate() + 1)
     const tmmw = (date.toISOString().slice(0,10));
+    return tmmw
   }
   
   componentDidMount(){
-    // baseUrl = ''
     fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.zipcode}&units=imperial&appid=${apiConfig.owaKey}`)
     .then(r => r.json())
     .then(weatherData => {
@@ -39,9 +37,6 @@ class App extends Component {
   }
   
   render() {
-    // console.log(this.state.dailyData)
-    console.log(this.handleTime());
-    
     return (
       <div className="App">
         <ZipcodeForm />

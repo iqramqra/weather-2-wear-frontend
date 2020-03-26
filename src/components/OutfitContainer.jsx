@@ -16,13 +16,7 @@ class OutfitContainer extends Component {
             })
         })
     }
-
     render() {
-        // console.log(this.state);
-        
-
-
-
         return (
             <div className='OutfitContainer'>
                 < OutfitCard outfit={this.state.outfit} dailyData={this.props.dailyData}/>
