@@ -20,14 +20,12 @@ class OutfitContainer extends Component {
     render() {
         // console.log(this.state);
         
-        
-        let renderOutfit = this.state.outfit.map(outfit => {
-            return <OutfitCard key={outfit.id} outfit={outfit} dailyData={this.props.dailyData}/>
-        })
+
+
 
         return (
             <div className='OutfitContainer'>
-                {renderOutfit}
+                < OutfitCard outfit={this.state.outfit} dailyData={this.props.dailyData}/>
             </div>
         )
     }

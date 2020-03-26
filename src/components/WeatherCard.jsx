@@ -13,7 +13,7 @@ class WeatherCard extends Component {
             <h1>{Math.round(temp)}°F</h1>
             <h5>Feels Like:</h5>
             <h4>{Math.round(feels_like)}°F</h4>
-            <p>{humidity}% Humidisty</p>
+            <p>{humidity}% Humidity</p>
             
         </div>
         )
