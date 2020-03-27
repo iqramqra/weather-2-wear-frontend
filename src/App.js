@@ -46,7 +46,7 @@ class App extends Component {
     .then(weatherData => {
       const todayDate = new Date().toISOString().slice(0,10);
       // const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${todayDate} 18:00:00` || `${this.handleTime()} 18:00:00`))
-      const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${this.handleTime()} 18:00:00` || `${todayDate} 18:00:00`))
+      const dailyData = weatherData.list.filter((reading) => reading.dt_txt.includes(`${todayDate} 18:00:00`))
         this.setState({
             allData: weatherData.city, 
             dailyData: dailyData
